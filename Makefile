@@ -1,5 +1,5 @@
-CC=gcc
-CFLAGS = -g -Wall -std=c11 -fopenmp -mavx -mfma -pthread -D_GNU_SOURCE
+CC=x86_64-linux-gnu-gcc
+CFLAGS = -g -Wall -std=c99 -fopenmp -mavx -mfma -D_GNU_SOURCE
 LDFLAGS = -fopenmp
 
 # 可执行文件
@@ -10,7 +10,7 @@ OBJS=test_main.o dumbmatrix.o matrix.o
 
 # 目标规则
 $(TARGET): $(OBJS)
-	$(CC) -o $(TARGET) $(OBJS) $(LDFLAGS) $(CFLAGS)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS) $(LDFLAGS) 
 
 # 目标文件规则
 test_main.o: test_main.c dumbmatrix.h matrix.h

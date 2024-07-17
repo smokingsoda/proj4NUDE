@@ -214,8 +214,8 @@ int abs_matrix_dumb(matrix_dumb *result, matrix_dumb *mat)
     {
         return -1;
     }
-    for (int j = 0; j < mat->cols; j++) {
-        for (int i = 0; i < mat->rows; i++) {
+    for (int i = 0; i < mat->rows; i++) {
+        for (int j = 0; j < mat->rows; j++) {
             int index = i * mat->cols;
             if (mat->data[j + index] < 0) {
                 result->data[j + index] = -mat->data[j + index];
@@ -266,8 +266,8 @@ int add_matrix_dumb(matrix_dumb *result, matrix_dumb *mat1, matrix_dumb *mat2)
     {
         return -1;
     }
-    for (int i = 0; i < mat1->rows; i++) {
-        for (int j = 0; j < mat1->cols; j++) {
+    for (int j = 0; j < mat1->rows; j++) {
+        for (int i = 0; i < mat1->cols; i++) {
             result->data[i * mat1->cols + j] = mat1->data[i * mat1->cols + j] + mat2->data[i * mat1->cols + j];
         }
         

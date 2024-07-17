@@ -195,7 +195,7 @@ int add_matrix(matrix *result, matrix *mat1, matrix *mat2) {
     __m256d mat2_element0, mat2_element1; //256 bit can contain 4 double
     omp_set_num_threads(1);
     //#pragma omp parallel for collapse(2)
-        //#pragma omp parallel for
+    #pragma omp parallel for
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < boundary; j+=8) {
                 mat1_element0 = _mm256_loadu_pd((void*)&(mat1->data[i][j]));
@@ -287,7 +287,7 @@ int mul_matrix(matrix *result, matrix *mat1, matrix *mat2) {
     __m256d mat1_element;
     __m256d mat2_element;
     int col_boundary = new_col / 4 * 4;
-    omp_set_num_threads(2);
+    omp_set_num_threads(1);
     for (int k = 0; k < middle; k++) {
         #pragma omp parallel
         {
@@ -475,7 +475,7 @@ int abs_matrix(matrix *result, matrix *mat) {
     __m256d mask0, mask1;
     __m256d _neg = _mm256_set1_pd(-0.0);
     __m256d _zero = _mm256_set1_pd(0.0);
-    omp_set_num_threads(2);
+    omp_set_num_threads(1);
     //#pragma omp parallel for collapse(2)
     #pragma omp parallel for
         for (int i = 0; i < rows; i++) {
