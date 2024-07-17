@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "dumbmatrix.h": "c",
+        "immintrin.h": "c"
+    }
+}
